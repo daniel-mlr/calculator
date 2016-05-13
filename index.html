@@ -4,36 +4,60 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Calculator</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+    crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">
-    <div class="keyboard">
+    <!--div class="container vertical-center"-->
+    <div class="container">
         <div class="row">
-            <div class="key">c</div>
-            <div class="key">*</div>
-            <div class="key">/</div>
-            <div class="key">3</div>
+            <div class="dm col-xs-12">
+                <div id="affichage">
+                    1236789.1234
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="key">~</div>
-            <div class="key">1</div>
-            <div class="key">2</div>
-            <div class="key">3</div>
+            <div class="col-xs-12">
+                <button class="bouton">ac</button>
+                <button class="bouton">ce</button>
+                <button class="bouton">%</button>
+                <button class="bouton">/</button>
+            </div>
         </div>
         <div class="row">
-            <div class="key">4</div>
-            <div class="key">5</div>
-            <div class="key">6</div>
+            <div class="col-xs-12">
+                <button class="bouton">7</button>
+                <button class="bouton">8</button>
+                <button class="bouton">9</button>
+                <button class="bouton">*</button>
+            </div>
         </div>
         <div class="row">
-            <div class="key">7</div>
-            <div class="key">8</div>
-            <div class="key">9</div>
-            <div class="key">backspace</div>
+            <div class="col-xs-12">
+                <button class="bouton">4</button>
+                <button class="bouton">5</button>
+                <button class="bouton">6</button>
+                <button class="bouton">-</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="bouton">1</button>
+                <button class="bouton">2</button>
+                <button class="bouton">3</button>
+                <button class="bouton dbl-height">+</button>
+                <button class="bouton lastrow">0</button>
+                <button class="bouton lastrow">.</button>
+                <button class="bouton lastrow">=</button>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

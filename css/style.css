@@ -1,0 +1,46 @@
+.container { 
+    /* margin top à ajuster avec javascript */
+    margin: 100px auto;
+    background-color: yellow;
+    max-width: 210px;
+    border: 2px solid black;
+}
+.row {
+    margin-top: 5px;
+}
+button {
+    width: 40px;
+    height: 30px;
+    border-radius: 5px;
+}
+button.dbl-height {
+    width: 40px;
+    height: 65px;
+    float: right;
+    margin-right: 4px;
+    margin-bottom: 10px;
+}
+button.lastrow {
+    margin-top: 5px;
+}
+
+#affichage {
+    height: 35px;
+    border: 2px solid black;
+    margin-right: 4px;
+    padding: 1px 3px 0 0;
+    font-size: 150%;
+    text-align: right;
+}
+
+
+
+
+/* problème: défait les rangées */
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
