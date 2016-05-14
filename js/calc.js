@@ -39,28 +39,34 @@ var cal = {
 	},
     'operation': function(operator) {
         if (operator === '+') {
-            this.acc = this.doCalc(this.nextOp);
+            this.acc = this.doCalc(this.nextOp, this.num);
             this.nextOp = 'add';
             this.decimal = 0;
-            this.num = 0;
+            this.num = '';
             return this.acc;
         } else if (operator === '-'){
-            this.acc = this.doCalc(this.nextOp);
+            this.acc = this.doCalc(this.nextOp, this.num);
             this.nextOp = 'substract';
             this.decimal = 0;
-            this.num = 0;
+            this.num = '';
             return this.acc;
         } else if (operator === '*'){
-            this.acc = this.doCalc(this.nextOp);
+            this.acc = this.doCalc(this.nextOp, this.num);
             this.nextOp = 'multiply';
             this.decimal = 0;
-            this.num = 0;
+            this.num = '';
             return this.acc;
         } else if (operator === '/'){
-            this.acc = this.doCalc(this.nextOp);
+            this.acc = this.doCalc(this.nextOp, this.num);
             this.nextOp = 'divide';
             this.decimal = 0;
-            this.num = 0;
+            this.num = '';
+            return this.acc;
+        } else if (operator === '='){
+            this.acc = this.doCalc(this.nextOp, this.num);
+            this.nextOp = 'divide';
+            this.decimal = 0;
+            this.num = '';
             return this.acc;
         } else {
         }
@@ -115,15 +121,15 @@ var cal = {
 		this.num = 0;
 		return 0;
 	},
-	'doCalc': function(operation) {
+	'doCalc': function(operation, x) {
 		if (operation === 'add') {
-			return this.chopE(this.acc + this.num);
+			return this.chopE(this.acc + x);
 		} else if (operation === 'substract') {
-			return this.chopE(this.acc - this.num);	
+			return this.chopE(this.acc - x);	
 		} else if (operation === 'multiply') {
-			return this.acc * this.num;
+			return this.chopE(this.acc * x);
 		} else if (operation === 'divide') {
-			return this.chopE(this.acc / this.num);
+			return this.chopE(this.acc / x);
 		} else {
 			return this.num;
 		}
