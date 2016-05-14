@@ -44,3 +44,5 @@ button.lastrow {
   display: flex;
   align-items: center;
 }
+$(function() {
+});

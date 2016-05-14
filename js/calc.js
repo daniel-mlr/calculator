@@ -1,5 +1,12 @@
+var signToOperator = {
+    '+': 'plus',
+    '-': 'minus',
+    '*': 'times',
+    '/': 'divBy',
+    '%': 'pct'
+};
 var cal = {
-	'num': 0,
+	'num': '',
 	'trace': [0],
 	'acc': 0,
 	'decimal': 0,
@@ -7,12 +14,15 @@ var cal = {
 	'nbDigits': 12,
 	'addDigit': function(dig) {
 		if (this.decimal) {
-			this.num += dig / Math.pow(10, this.decimal);
-			this.num.toFixed(this.decimal);
+			//this.num += dig / Math.pow(10, this.decimal);
+            this.num += dig;
 			this.decimal++;
 			return this.num;
 		} else {
-			this.num = this.num * 10 + dig;
+            console.log('avant addDigit', this.num, typeof this.num);
+			//this.num = this.num * 10 + dig;
+			this.num = this.num + dig;
+            console.log('addDigit', this.num, typeof this.num);
 			return this.num;
 		}
 	},
@@ -24,8 +34,40 @@ var cal = {
 		if (!this.decimal) {
 			this.decimal += 1;
 		}
+        this.num += '.';
 		return this.num;
 	},
+    'operation': function(operator) {
+        if (operator === '+') {
+            this.acc = this.doCalc(this.nextOp);
+            this.nextOp = 'add';
+            this.decimal = 0;
+            this.num = 0;
+            return this.acc;
+        } else if (operator === '-'){
+            this.acc = this.doCalc(this.nextOp);
+            this.nextOp = 'substract';
+            this.decimal = 0;
+            this.num = 0;
+            return this.acc;
+        } else if (operator === '*'){
+            this.acc = this.doCalc(this.nextOp);
+            this.nextOp = 'multiply';
+            this.decimal = 0;
+            this.num = 0;
+            return this.acc;
+        } else if (operator === '/'){
+            this.acc = this.doCalc(this.nextOp);
+            this.nextOp = 'divide';
+            this.decimal = 0;
+            this.num = 0;
+            return this.acc;
+        } else {
+        }
+    },
+
+
+
 	'plus': function() {
 		this.acc = this.doCalc(this.nextOp);
 		this.nextOp = 'add';
@@ -75,13 +117,13 @@ var cal = {
 	},
 	'doCalc': function(operation) {
 		if (operation === 'add') {
-			return this.chopDigit(this.acc + this.num);
+			return this.chopE(this.acc + this.num);
 		} else if (operation === 'substract') {
-			return this.chopDigit(this.acc - this.num);	
+			return this.chopE(this.acc - this.num);	
 		} else if (operation === 'multiply') {
 			return this.acc * this.num;
 		} else if (operation === 'divide') {
-			return this.chopDigit(this.acc / this.num);
+			return this.chopE(this.acc / this.num);
 		} else {
 			return this.num;
 		}
@@ -92,8 +134,23 @@ var cal = {
 	'add': function() {
 		return this.num += 1;
 	},
-	'chopDigit': function(x) {
-		return Math.round(x * Math.pow(10, this.nbDigits)) / Math.pow(10, this.nbDigits);
+	'chopE': function(x) {
+		return Math.round(
+                x * Math.pow(10, this.nbDigits)) / Math.pow(10, this.nbDigits);
 	}
-	
 };
+// jQuery
+$(function() {
+    $('.digit').click(function() {
+       $('#affichage').html(cal.addDigit($(this).html()));
+       console.log($(this).html());
+    });
+    $('.dot').click(function() {
+        $('#affichage').html(cal.dot());
+    });
+    $('.op').click(function() {
+        var sign = $(this).html();
+        console.log(sign);
+        $('#affichage').html(cal.operation($(this).html()));
+    });
+});
