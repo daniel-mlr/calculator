@@ -34,8 +34,6 @@ button.lastrow {
 }
 
 
-
-
 /* problème: défait les rangées */
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -44,5 +42,3 @@ button.lastrow {
   display: flex;
   align-items: center;
 }
-$(function() {
-});
