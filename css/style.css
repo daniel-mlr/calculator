@@ -36,6 +36,7 @@ button {
     margin: 5px;
     border-radius: 5px;
     font-size: 26px;
+    background-color: #DDCB83;
 }
 .btn-large {
     width: 79px;
@@ -50,7 +51,12 @@ button.dbl-height {
 button.lastrow {
     margin-top: 5px;
 }
-
+button.dig-button, button.dot {
+    background-color: #FCF6D4;
+}
+button.eq {
+    background-color: #F49738;
+}
 #affichage {
     height: 35px;
     border: 2px solid black;
@@ -114,7 +120,6 @@ button.lastrow {
 
 .digit .segment.on, .separator {
   opacity:1;
-  opacity:0.35;
   box-shadow:0 0 50px rgba(255,0,0,0.7);
   transition:opacity 0s;
   -webkit-transition:opacity 0s;

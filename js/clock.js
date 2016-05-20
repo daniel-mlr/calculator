@@ -12,23 +12,23 @@ var digitSegments = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
-  var _hours = document.querySelectorAll('.hours');
-  var _minutes = document.querySelectorAll('.minutes');
-  var _seconds = document.querySelectorAll('.seconds');
-  
-  setInterval(function() {
-    var date = new Date();
-    var hours = date.getHours(), minutes = date.getMinutes(), seconds = date.getSeconds();  
-    
-    setNumber(_hours[0], Math.floor(hours/10), 1);
-    setNumber(_hours[1], hours%10, 1);
+    var _hours = document.querySelectorAll('.hours');
+    var _minutes = document.querySelectorAll('.minutes');
+    var _seconds = document.querySelectorAll('.seconds');
 
-    setNumber(_minutes[0], Math.floor(minutes/10), 1);
-    setNumber(_minutes[1], minutes%10, 1);
+    setInterval(function() {
+        var date = new Date();
+        var hours = date.getHours(), minutes = date.getMinutes(), seconds = date.getSeconds();  
 
-    setNumber(_seconds[0], Math.floor(seconds/10), 1);
-    setNumber(_seconds[1], seconds%10, 1);
-  }, 1000);
+        setNumber(_hours[0], Math.floor(hours/10), 1);
+        setNumber(_hours[1], hours%10, 1);
+
+        setNumber(_minutes[0], Math.floor(minutes/10), 1);
+        setNumber(_minutes[1], minutes%10, 1);
+
+        setNumber(_seconds[0], Math.floor(seconds/10), 1);
+        setNumber(_seconds[1], seconds%10, 1);
+    }, 1000);
 });
 
 var setNumber = function(digit, number, on) {

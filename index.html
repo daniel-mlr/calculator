@@ -18,7 +18,7 @@
     <div class="container">
         <div class="calc-frame">
             <div class="clock">
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -30,7 +30,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -42,7 +42,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -54,7 +54,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -66,7 +66,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -78,7 +78,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -90,7 +90,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -102,7 +102,7 @@
 
                 <div class="separator"></div>
 
-                <div class="digit">
+                <div class="digit" data-value="10">
                     <div class="segment"></div>
                     <div class="segment"></div>
                     <div class="segment"></div>
@@ -114,58 +114,44 @@
             </div>
             <div class="keyboard">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <button class="bouton ac">C</button>
-                        <button class="bouton ce">CE</button>
-                        <button class="bouton op">%</button>
-                        <button class="bouton op">/</button>
-                    </div>
+                    <button class="bouton ac">C</button>
+                    <button class="bouton ce">CE</button>
+                    <button class="bouton op">%</button>
+                    <button class="bouton op">/</button>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <button class="bouton dig-button">7</button>
-                        <button class="bouton dig-button">8</button>
-                        <button class="bouton dig-button">9</button>
-                        <button class="bouton op">*</button>
-                    </div>
+                    <button class="bouton dig-button">7</button>
+                    <button class="bouton dig-button">8</button>
+                    <button class="bouton dig-button">9</button>
+                    <button class="bouton op">*</button>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <button class="bouton dig-button">4</button>
-                        <button class="bouton dig-button">5</button>
-                        <button class="bouton dig-button">6</button>
-                        <button class="bouton op">-</button>
-                    </div>
+                    <button class="bouton dig-button">4</button>
+                    <button class="bouton dig-button">5</button>
+                    <button class="bouton dig-button">6</button>
+                    <button class="bouton op">-</button>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <button class="bouton dig-button">1</button>
-                        <button class="bouton dig-button">2</button>
-                        <button class="bouton dig-button">3</button>
-                        <button class="bouton op">+</button>
-                    </div>
+                    <button class="bouton dig-button">1</button>
+                    <button class="bouton dig-button">2</button>
+                    <button class="bouton dig-button">3</button>
+                    <button class="bouton op">+</button>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
                     <button class="bouton btn-large dig-button">0</button>
                     <button class="bouton dot">.</button>
-                    <button class="bouton btn-large op">=</button>
-                    </div>
+                    <button class="bouton btn-large op eq">=</button>
                 </div>
             </div>
             <img src="img/datamath2.jpg">
         </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="dm col-xs-12">
-                    <div id="affichage"> </div>
-                </div>
-            </div>
-            <div class="row">
-            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div id="affichage"> </div>
         </div>
     </div>
+</div>
 <!--script 
         src="https://code.jquery.com/jquery-2.2.2.min.js" 
         integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" 
