@@ -28,6 +28,7 @@ var cal = {
 	},
     'operation': function(sign) {
         this.acc = this.doCalc(this.nextOp, this.num);
+        //console.log(typeof this.acc, this.acc);
         this.nextOp = signToOperator[sign];
         this.num = '';
         return this.acc;
@@ -44,7 +45,7 @@ var cal = {
 		this.nextOp = '';
 		this.acc = 0;
 		this.num = '';
-		return 0;
+		return '0';
 	},
 	'doCalc': function(operation, x) {
         if (!x) {x = 0;}
@@ -58,18 +59,19 @@ var cal = {
 		} else if (operation === 'divide') {
 			return this.chopE(this.acc / x);
 		} else if (operation === 'equal') {
-            console.log('x', x);
-			return this.acc;
+            //console.log('x', x);
+			return this.acc.toString();
 		} else {
-            console.log('x', x);
-            this.acc = x;
+            //console.log('x', x);
+            this.acc = x.toString();
             return this.acc;
         }
 	},
 	'chopE': function(x) {
         // remove js float error
-		return Math.round(
-                x * Math.pow(10, this.nbDigits)) / Math.pow(10, this.nbDigits);
+		return (Math.round(
+                x * Math.pow(10, this.nbDigits)) / Math.pow(10, this.nbDigits)
+                ).toString();
 	}
 };
 
@@ -89,30 +91,44 @@ var digitSegments = [
 ];
 
 var digits = document.querySelector('.clock').querySelectorAll('.digit');
-console.log('digits:', digits);
+var separators = document.querySelector('.clock').querySelectorAll('.separator'); 
 
 var nbDigits = digits.length;
 
 var display = function(strNumber) {
-    console.log('strNumber:', strNumber);
-    var dotPosition = strNumber.indexOf('.');
-
-    //setDot(dotPosition);
+    dotPosition = strNumber.indexOf('.');
 
     strNumber = strNumber.replace('.', '');
     var len = strNumber.length;
+    
+    setDot(len, dotPosition);
+ 
     var digitNo = nbDigits;
     while(digitNo--) {
         setDigit(digits[digitNo], strNumber[len - (nbDigits - digitNo)]);
     }
+};
+
+var setDot = function(nbrLength, dotIndex) {
+    //if (dotIndex >= 0) {
+        var sepPosition = nbDigits - 1 - (nbrLength - dotIndex);
+        for (i=0, l = separators.length; i<l; i++) {
+            if (i === sepPosition && dotIndex >= 0) {
+                separators[i].classList.add("on");
+            } else {
+                separators[i].classList.remove("on");
+            }
+        }
     /*
-    for (i=0; i<nbDigits; i++) {
-        setDigit(digits[i], strNumber[i]);
+    } else {
+        for (i=0, l = separators.length; i<l; i++) {
+            separators[i].classList.remove("on");
+        }
     }
     */
 };
 
-var setDigit = function(digit, number, on) {
+var setDigit = function(digit, number) {
     var segments = digit.querySelectorAll('.segment');
     var current = parseInt(digit.getAttribute('data-value'));
     if (number === undefined) {
@@ -122,38 +138,14 @@ var setDigit = function(digit, number, on) {
     // only switch if number has changed or wasn't set
     if (!isNaN(current) && current != number) {
         // unset previous number
-        console.log(
-                'digitSegments[' + current + ']:, ', digitSegments[current], 
-                'number: ', number );
         digitSegments[current].forEach(function(digitSegment, index) {
-            /*
-            setTimeout(function() {
-                console.log('digitSegment:', digitSegment);
-                segments[digitSegment-1].classList.remove('on');
-            }, index*25);
-            */
-            console.log('digitSegment:', digitSegment);
             segments[digitSegment-1].classList.remove('on');
         });
     }
 
     if (isNaN(current) || current != number || current === 10 ) {
         // set new number after
-        console.log(
-                'digitSegments[' + current + ']:, ', digitSegments[current], 
-                'number: ', number );
-        /*
-        setTimeout(function() {
-            digitSegments[number].forEach(function(digitSegment, index) {
-                setTimeout(function() {
-                    console.log('digitSegment:', digitSegment);
-                    segments[digitSegment-1].classList.add('on');
-                }, index*25);
-            });
-        }, 50);
-        */
         digitSegments[number].forEach(function(digitSegment, index) {
-            console.log('digitSegment:', digitSegment);
             segments[digitSegment-1].classList.add('on');
         });
         digit.setAttribute('data-value', number);
@@ -163,24 +155,19 @@ var setDigit = function(digit, number, on) {
 // jQuery
 $(function() {
     $('.dig-button').click(function() {
-        //$('#affichage').html(cal.addDigit($(this).html()));
-        console.log('click', $(this).html());
         display(cal.addDigit($(this).html()));
     });
     $('.dot').click(function() {
-        //$('#affichage').html(cal.dot());
         display(cal.dot());
     });
     $('.ce').click(function() {
-        //$('#affichage').html(cal.ce());
         display(cal.ce());
     });
     $('.ac').click(function() {
         $('#affichage').html(cal.ac());
+        display(cal.ac());
     });
     $('.op').click(function() {
-        var sign = $(this).html();
-        console.log('op click recu');
-        $('#affichage').html(cal.operation($(this).html()));
+        display(cal.operation($(this).html()));
     });
 });
