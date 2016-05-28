@@ -12,33 +12,32 @@ var cal = {
 	'trace': [0],
 	'acc': 0,
 	'nextOp': '',
-	'nbDigits': 12,
+	'nbDigits': 8,
 	
     'addDigit': function(dig) {
         this.num += dig;
+        console.log(this.num);
         return this.num;
 	},
 	'delDigit': function() {
 		this.num = this.num.slice(0, -1);
+        console.log(this.num);
 		return this.num;
 	},
 	'dot': function() {
         this.num += '.';
+        console.log(this.num);
 		return this.num;
 	},
     'operation': function(sign) {
         this.acc = this.doCalc(this.nextOp, this.num);
-        //console.log(typeof this.acc, this.acc);
         this.nextOp = signToOperator[sign];
         this.num = '';
+        console.log(this.num);
         return this.acc;
     },
 
 	'ce': function() {
-        /*
-		this.num = '';
-		return 0;
-        */
         return this.delDigit();
 	},
 	'ac': function() {
@@ -51,27 +50,30 @@ var cal = {
         if (!x) {x = 0;}
 		if (operation === 'add') {
             this.acc = parseFloat(this.acc) + parseFloat(x);
+            console.log(this.chopE(this.acc));
             return this.chopE(this.acc);
         } else if (operation === 'substract') {
+            console.log(this.chopE(this.acc - x));
 			return this.chopE(this.acc - x);	
 		} else if (operation === 'multiply') {
+            console.log(this.chopE(this.acc * x));
 			return this.chopE(this.acc * x);
 		} else if (operation === 'divide') {
+            console.log(this.chopE(this.acc / x));
 			return this.chopE(this.acc / x);
 		} else if (operation === 'equal') {
-            //console.log('x', x);
 			return this.acc.toString();
 		} else {
-            //console.log('x', x);
             this.acc = x.toString();
             return this.acc;
         }
 	},
 	'chopE': function(x) {
         // remove js float error
-		return (Math.round(
-                x * Math.pow(10, this.nbDigits)) / Math.pow(10, this.nbDigits)
-                ).toString();
+        console.log(x);
+		return (Math.round(x * Math.pow(10, this.nbDigits - 1)) / 
+                Math.pow(10, this.nbDigits - 1)
+                ).toString().slice(0, nbDigits);
 	}
 };
 
@@ -110,22 +112,14 @@ var display = function(strNumber) {
 };
 
 var setDot = function(nbrLength, dotIndex) {
-    //if (dotIndex >= 0) {
-        var sepPosition = nbDigits - 1 - (nbrLength - dotIndex);
-        for (i=0, l = separators.length; i<l; i++) {
-            if (i === sepPosition && dotIndex >= 0) {
-                separators[i].classList.add("on");
-            } else {
-                separators[i].classList.remove("on");
-            }
-        }
-    /*
-    } else {
-        for (i=0, l = separators.length; i<l; i++) {
+    var sepPosition = nbDigits - 1 - (nbrLength - dotIndex);
+    for (i=0, l = separators.length; i<l; i++) {
+        if (i === sepPosition && dotIndex >= 0) {
+            separators[i].classList.add("on");
+        } else {
             separators[i].classList.remove("on");
         }
     }
-    */
 };
 
 var setDigit = function(digit, number) {
@@ -164,7 +158,6 @@ $(function() {
         display(cal.ce());
     });
     $('.ac').click(function() {
-        $('#affichage').html(cal.ac());
         display(cal.ac());
     });
     $('.op').click(function() {
