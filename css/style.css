@@ -1,6 +1,6 @@
 .container { 
     /* margin top à ajuster avec javascript */
-    margin: 150px auto;
+    margin: 50px auto;
     max-width: 350px;
     /*border: 2px solid black;*/
 }

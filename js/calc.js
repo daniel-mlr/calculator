@@ -9,14 +9,13 @@ var signToOperator = {
 };
 var cal = {
 	'num': '',
-	'trace': [0],
+	//'trace': [0],
 	'acc': 0,
 	'nextOp': '',
 	'nbDigits': 8,
 	
     'addDigit': function(dig) {
         this.num += dig;
-        console.log(this.num);
         return this.num;
 	},
 	'delDigit': function() {
@@ -25,15 +24,18 @@ var cal = {
 		return this.num;
 	},
 	'dot': function() {
+        /*
+        if (this.num === '') {
+            this.num = '0';
+        }
+        */
         this.num += '.';
-        console.log(this.num);
 		return this.num;
 	},
     'operation': function(sign) {
         this.acc = this.doCalc(this.nextOp, this.num);
         this.nextOp = signToOperator[sign];
         this.num = '';
-        console.log(this.num);
         return this.acc;
     },
 
